@@ -17,9 +17,26 @@
 </script>
 
 <form on:submit={submit}>
-    <label for="">Sheet document ID (from url)</label>
-    <input type="text" name="id">
-    <label for="">Sheet Title</label>
-    <input type="text" name="title">
+    <div>
+        <label for="">Sheet document ID (from url)</label>
+        <input type="text" name="id">
+    </div>
+    <div>
+        <label for="">Sheet Title</label>
+        <input type="text" name="title">
+    </div>
     <button>Go</button>
 </form>
+
+<style>
+    label {
+        display: block;
+    }
+    input {
+        @apply bg-slate-200;
+    }
+
+    button {
+        @apply bg-slate-400 rounded-sm px-2 mt-4 w-20;
+    }
+</style>

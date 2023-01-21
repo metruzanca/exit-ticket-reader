@@ -39,10 +39,12 @@
         {#each questions as question, i}
             <h2>{question.label}</h2>
             {#each entries as student}
-                <p>
-                    <b>{student.name}</b>: 
-                    {student.answers[i]}
-                </p>
+                {#if student.answers[i]}
+                    <p>
+                        <b>{student.name}</b>: 
+                        {student.answers[i]}
+                    </p>
+                {/if}
             {/each}
             <hr>
         {/each}
@@ -56,3 +58,9 @@
     </details>
 
 </div>
+
+<style>
+    h2 {
+        @apply text-4xl;
+    }
+</style>
