@@ -35,7 +35,7 @@
 </script>
 
 <div>
-    <main class="w-[600px]">
+    <main class="w-[600px] mx-2">
         {#each questions as question, i}
             <h2 class="text-4xl">{question.label}</h2>
             {#each entries as student}
@@ -48,13 +48,14 @@
             {/each}
             <hr>
         {/each}
-    </main>
 
-    <details>
-        <summary>Raw Data</summary>
-        <pre>
-            {JSON.stringify(data, null, 2)}
-        </pre>
-    </details>
+        
+        <details>
+            <summary>Raw Data</summary>
+            <pre>
+                {JSON.stringify(data, null, 2)}
+            </pre>
+        </details>
+    </main>
 
 </div>
