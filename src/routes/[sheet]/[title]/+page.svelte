@@ -35,7 +35,7 @@
 </script>
 
 <div>
-    <main class="w-[600px] mx-2">
+    <main class="max-w-[600px] mx-2">
         {#each questions as question, i}
             <h2 class="text-4xl">{question.label}</h2>
             {#each entries as student}
