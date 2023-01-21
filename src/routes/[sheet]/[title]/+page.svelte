@@ -35,12 +35,12 @@
 </script>
 
 <div>
-    <main>
+    <main class="w-[600px]">
         {#each questions as question, i}
-            <h2>{question.label}</h2>
+            <h2 class="text-4xl">{question.label}</h2>
             {#each entries as student}
                 {#if student.answers[i]}
-                    <p>
+                    <p class="pb-1">
                         <b>{student.name}</b>: 
                         {student.answers[i]}
                     </p>
@@ -58,9 +58,3 @@
     </details>
 
 </div>
-
-<style>
-    h2 {
-        @apply text-4xl;
-    }
-</style>
