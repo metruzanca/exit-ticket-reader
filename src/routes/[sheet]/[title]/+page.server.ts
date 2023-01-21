@@ -7,6 +7,10 @@ import type { PageServerLoad } from './$types';
 export const load = (async ({ params }) => {
   // const post = await getPostFromDatabase(params.slug);
  
+  if (params.sheet.length < 40) {
+    throw error(404, 'Not found');
+  }
+
   const data = await getSheet(params.sheet, params.title)
 
   if (data) {
