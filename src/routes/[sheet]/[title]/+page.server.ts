@@ -1,4 +1,4 @@
-import { getSheet } from '$lib/gsheets-api';
+import { getSheet } from '$lib/utils';
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
  
