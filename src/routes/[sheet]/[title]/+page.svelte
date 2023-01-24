@@ -25,14 +25,14 @@
         <h1  class="text-4xl">Exit Ticket Viewer</h1>
         <div>
             <label for="when">When?</label>
-            <select id="when" class="cursor-pointer" bind:value={selectedGroup}>
+            <select id="when" class="cursor-pointer dark:bg-slate-800" bind:value={selectedGroup}>
                 {#each Object.keys(groups) as date}
                     <option value="{date}">{date}</option>
                 {/each}
             </select>
         </div>
 
-        <hr>
+        <hr class="border-slate-500">
 
 
         {#if selectedGroup}
@@ -46,7 +46,7 @@
                          </p>
                      {/if}
                  {/each}
-                 <hr>
+                 <hr class="border-slate-500">
              {/each}
         {/if}
 
