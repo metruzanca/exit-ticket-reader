@@ -15,7 +15,7 @@
 
 <nav class="absolute top-1 right-1">
   <input type="checkbox" id="theme" bind:checked={isDark}>
-  <label for="theme">Dark Theme?</label>
+  <label for="theme">Dark?</label>
 </nav>
 
 <slot />

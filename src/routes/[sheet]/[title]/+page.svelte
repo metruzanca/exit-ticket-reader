@@ -1,9 +1,14 @@
 <script  lang="ts">
+    import Debug from "$lib/components/Debug.svelte";
+    import QandA from "$lib/components/QandA.svelte";
+    import ScoreQandA from "$lib/components/ScoreQandA.svelte";
     import type { Sheet } from "$lib/types";
     import { groupBy } from "$lib/utils";
 
     export let data: Sheet; // PageData
     let selectedGroup: string;
+    let anonymize = true;
+    let considerScore = false;
 
     const questions = data.table.cols.filter(({ label }) => label.length !== 0).slice(3)
     
@@ -16,45 +21,46 @@
         }
     })
 
-    const groups = groupBy(entries, el => el.date)
+    const submissionsByDate = groupBy(entries, el => el.date)
+
+    const sortedDates = Object.keys(submissionsByDate).sort().reverse()
 
 </script>
 
 <div>
     <main class="max-w-[600px] mx-2">
-        <h1  class="text-4xl">Exit Ticket Viewer</h1>
+        <h1  class="text-5xl">Exit Ticket Viewer</h1>
         <div>
             <label for="when">When?</label>
-            <select id="when" class="cursor-pointer dark:bg-slate-800 bg-slate-100" bind:value={selectedGroup}>
-                {#each Object.keys(groups) as date}
+            <select id="when" bind:value={selectedGroup}>
+                {#each sortedDates as date}
                     <option value="{date}">{date}</option>
                 {/each}
             </select>
         </div>
 
+        <label for="anonymize">Anonymize</label>
+        <input type="checkbox" id="anonymize" bind:checked={anonymize}>
 
-        {#if selectedGroup}
-             {#each questions as question, i}
-                 <h2 class="text-4xl text-purple-600 dark:text-purple-300 mt-4">{question.label}</h2>
-                 {#each groups[selectedGroup] as student}
-                     {#if student.answers[i]}
-                         <p class="pb-1">
-                             <b class=" dark:text-orange-300">{student.name}</b>: 
-                             {student.answers[i]}
-                         </p>
-                     {/if}
-                 {/each}
-             {/each}
+        <label for="comfort">Show by Comfort Scores?</label>
+        <input type="checkbox" id="comfort" bind:checked={considerScore}>
+
+
+        {#if considerScore}
+            <ScoreQandA
+                {questions}
+                {anonymize}
+                submissions={submissionsByDate[selectedGroup]}
+            />
+        {:else}
+            <QandA
+                {questions}
+                {anonymize}
+                submissions={submissionsByDate[selectedGroup]}
+            />
         {/if}
 
-
-        
-        <details>
-            <summary>Raw Data</summary>
-            <pre>
-                {JSON.stringify(data, null, 2)}
-            </pre>
-        </details>
+        <Debug {questions} {entries} />
     </main>
 
 </div>

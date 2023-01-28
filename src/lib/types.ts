@@ -11,3 +11,13 @@ export type Sheet = {
         }>
     }
 }
+
+export type Submission = {
+  date: string;
+  name: string;
+  answers: string[];
+}
+
+export type Questions = {
+  label: string;
+}[]
